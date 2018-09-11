@@ -42,9 +42,10 @@
 
       <div class="form-group" [class.has-error]="hasPrimaryLanguageError">
           <label class="control-label">Primary Language</label>
-          <select class="form-control"
+          <select class="form-control" #primaryLanguage
               name="primary-language"
-              (blur)="validatePrimaryLanguage($event)"
+              (blur)="validatePrimaryLanguage(primaryLanguage.value)"
+              (change)="validatePrimaryLanguage(primaryLanguage.value)"
               [(ngModel)]="employee.primaryLanguage">
             <option value="default">Select a Language...</option>
             <option *ngFor="let lang of languages">
@@ -58,7 +59,8 @@
         <input type="date" class="form-control" name="dateHired" ngModel>
       </div>
 
-      <button class="btn btn-primary" type="submit">Ok</button>
+      <button class="btn btn-primary" type="submit"
+        [disabled]="form.invalid">Ok</button>
     </form>
     Model: {{ employee | json }}
     <br>

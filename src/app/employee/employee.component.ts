@@ -21,9 +21,9 @@ export class EmployeeComponent implements OnInit {
     this.hasPrimaryLanguageError = false;
   }
 
-  validatePrimaryLanguage(event) {
+  validatePrimaryLanguage(value) {
 
-    if (this.employee.primaryLanguage === 'default') {
+    if (value === 'default') {
       this.hasPrimaryLanguageError = true;
     } else {
         this.hasPrimaryLanguageError = false;
