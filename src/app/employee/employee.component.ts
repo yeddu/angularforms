@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LanguageService } from '../language.service';
 
 @Component({
   selector: 'af-employee',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EmployeeComponent implements OnInit {
 
-  constructor() { }
+  public languages: string [];
+
+  constructor(private languageService: LanguageService) { }
 
   ngOnInit() {
+    this.languages = this.languageService.getLanguages();
   }
 
 }
