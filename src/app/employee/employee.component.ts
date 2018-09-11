@@ -10,15 +10,23 @@ import { Employee, IEmployee } from './employee';
 export class EmployeeComponent implements OnInit {
 
   public languages: string [];
-  public employees: IEmployee [];
-  public currentEmployee: IEmployee;
+  public employee: IEmployee;
+  public hasPrimaryLanguageError: boolean;
 
   constructor(private languageService: LanguageService) { }
 
   ngOnInit() {
     this.languages = this.languageService.getLanguages();
-    this.currentEmployee = new Employee('Darla', 'Smith', true, 'w2', 'English');
-    this.employees.push(this.currentEmployee);
+    this.employee = new Employee('', '', true, '', 'default');
+    this.hasPrimaryLanguageError = false;
   }
 
-}
+  validatePrimaryLanguage(event) {
+
+    if (this.employee.primaryLanguage === 'default') {
+      this.hasPrimaryLanguageError = true;
+    } else {
+        this.hasPrimaryLanguageError = false;
+      }
+    }
+  }

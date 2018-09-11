@@ -2,21 +2,25 @@
     <h3>Employee Form</h3>
 
     <form #form="ngForm" novalidate>
-      <div class="form-group">
-        <label>First Name</label>
-        <input type="text" class="form-control" required name="firstName"
-          [(ngModel)] = 'currentEmployee.firstName'>
+      <div class="form-group" [class.has-error]="firstName.invalid && firstName.dirty">
+        <label class="control-label">First Name</label>
+        <input #firstName="ngModel" required type="text" class="form-control" name="firstName"
+          [(ngModel)] = 'employee.firstName'>
+        <div *ngIf="firstName.invalid && firstName.dirty" class="alert alert-danger">
+          First Name is all like required, and stuff.
+        </div>
       </div>
+
       <div class="form-group">
           <label>Last Name</label>
           <input type="text" class="form-control" required name="lastName"
-            [(ngModel)]= 'currentEmployee.lastName'>
+            [(ngModel)]= 'employee.lastName'>
       </div>
 
       <div class="checkbox">
         <label>
           <input type="checkbox" name="is-full-time"
-            [(ngModel)]="currentEmployee.isFullTime"> Full Time Employee
+            [(ngModel)]="employee.isFullTime"> Full Time Employee
         </label>
       </div>
 
@@ -24,23 +28,25 @@
       <div class="radio">
         <label>
           <input type="radio" name="pay-type" value="w2" checked
-            [(ngModel)]="currentEmployee.paymentType">
+            [(ngModel)]="employee.paymentType">
           W2
         </label>
       </div>
       <div class="radio">
           <label>
             <input type="radio" name="pay-type" value="1099"
-            [(ngModel)]="currentEmployee.paymentType">
+            [(ngModel)]="employee.paymentType">
             1099
           </label>
       </div>
 
-      <div class="form-group">
-          <label>Primary Language</label>
+      <div class="form-group" [class.has-error]="hasPrimaryLanguageError">
+          <label class="control-label">Primary Language</label>
           <select class="form-control"
               name="primary-language"
-              [(ngModel)]="currentEmployee.primaryLanguage">
+              (blur)="validatePrimaryLanguage($event)"
+              [(ngModel)]="employee.primaryLanguage">
+            <option value="default">Select a Language...</option>
             <option *ngFor="let lang of languages">
               {{lang}}
             </option>
@@ -54,7 +60,7 @@
 
       <button class="btn btn-primary" type="submit">Ok</button>
     </form>
-    Model: {{ currentEmployee | json }}
+    Model: {{ employee | json }}
     <br>
     Angular: {{ form.value | json}}
   </div>
