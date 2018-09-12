@@ -16,7 +16,6 @@ import { EmployeeComponent } from './employee/employee.component';
     FormsModule,
     HttpClientModule
   ],
-  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
