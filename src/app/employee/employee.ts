@@ -4,6 +4,7 @@ export interface IEmployee {
   isFullTime: boolean;
   paymentType: string;
   primaryLanguage: string;
+  dateHired: Date;
 }
 
 export class Employee implements IEmployee {
@@ -11,5 +12,6 @@ export class Employee implements IEmployee {
     public lastName: string,
     public isFullTime: boolean,
     public paymentType: string,
-    public primaryLanguage: string) {  }
+    public primaryLanguage: string,
+    public dateHired: Date) {  }
 }

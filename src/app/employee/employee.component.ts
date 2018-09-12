@@ -19,7 +19,7 @@ export class EmployeeComponent implements OnInit {
 
   ngOnInit() {
     this.languages = this.languageService.getLanguages();
-    this.employee = new Employee('', '', true, 'w2', 'default');
+    this.employee = new Employee('', '', true, 'w2', 'default', new Date());
     this.hasPrimaryLanguageError = false;
   }
 

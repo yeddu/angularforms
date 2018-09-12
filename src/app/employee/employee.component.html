@@ -27,20 +27,19 @@
         </label>
       </div>
 
-      <label class="control-label">Payment Type</label>
-      <div class="radio">
-        <label>
-          <input type="radio" name="pay-type" value="w2" checked
-            [(ngModel)]="employee.paymentType">
+      <div>
+        <label class="control-label">Payment Type</label>
+      </div>
+
+      <div class="btn-group btn-group-toggle" ngbRadioGroup name="paymentType" [(ngModel)]="employee.paymentType">
+        <label ngbButtonLabel class="btn-primary">
+          <input ngbButton type="radio" value="w2">
           W2
         </label>
-      </div>
-      <div class="radio">
-          <label>
-            <input type="radio" name="pay-type" value="1099"
-            [(ngModel)]="employee.paymentType">
-            1099
-          </label>
+        <label ngbButtonLabel class='btn-primary'>
+          <input ngbButton type="radio" value="1099">
+          1099
+        </label>
       </div>
 
       <div class="form-group" [class.has-error]="hasPrimaryLanguageError">
@@ -58,14 +57,17 @@
       </div>
 
       <div class="form-group">
-        <label>Date Hired</label>
-        <input type="date" class="form-control" name="dateHired" ngModel>
+        <div>
+          <label class="control-label">Date Hired</label>
+        </div>
+        <ngb-datepicker #dp name="dateHired" [(ngModel)]="employee.dateHired"> </ngb-datepicker>
       </div>
 
       <button class="btn btn-primary" type="submit"
         [disabled]="form.invalid">Ok</button>
     </form>
-    <!--Model: {{ employee | json }}
+    <!--
+    Model: {{ employee | json }}
     <br>
     Angular: {{ form.value | json}}-->
-  </div>
+</div>
