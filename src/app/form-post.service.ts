@@ -18,7 +18,6 @@ export class FormPostService {
   }
 
   postEmployeeForm(employee: IEmployee): Observable<any> {
-    const body = JSON.stringify(employee);
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     const options = { headers: headers };
 
